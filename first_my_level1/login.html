@@ -1,0 +1,435 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Admin Panel Login
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <style>
+   body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f6fa;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            margin-bottom: 240px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            opacity: 0;
+        }
+        .left {
+            background: #3b82f6;
+            color: white;
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transform: translateX(-100%);
+        }
+        .left img {
+            width: 50px;
+            margin-bottom: 20px;
+        }
+        .left h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .left p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .left .example-file {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+        .left .example-file img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .left .example-file .avatar {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .right {
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transform: translateX(100%);
+        }
+        .right h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .right label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .right input[type="text"], .right input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .right input[type="text"]:focus, .right input[type="password"]:focus {
+            border-color: #3b82f6;
+            outline: none;
+        }
+        .right .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .right .forgot-password a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .right .remember-me {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .right .remember-me input {
+            margin-right: 10px;
+        }
+        .right .remember-me label {
+            font-size: 14px;
+        }
+        .right button {
+            width: 100%;
+            padding: 10px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .right button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s;
+            transform: translateX(-50%) translateY(-50%) scale(0);
+            border-radius: 50%;
+        }
+        .right button:hover::before {
+            transform: translateX(-50%) translateY(-50%) scale(1);
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .left, .right {
+                padding: 20px;
+            }
+            .right button {
+                width: 100%;
+                padding: 15px;
+                font-size: 18px;
+            }
+        }
+        .error {
+            border-color: red !important;
+            animation: shake 0.3s;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+        .welcome-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+            color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            overflow: hidden;
+        }
+        .welcome-screen h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .welcome-screen button {
+            padding: 10px 20px;
+            background: white;
+            color: #3b82f6;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            transition: background 0.3s, color 0.3s;
+        }
+        .welcome-screen button:hover {
+            background: #3b82f6;
+            color: white;
+        }
+        .welcome-screen .background-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .welcome-screen .background-shapes .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .welcome-screen .background-shapes .shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 15%;
+        }
+        .welcome-screen .background-shapes .shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 70%;
+        }
+        .welcome-screen .background-shapes .shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 80%;
+            left: 30%;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+  </style>
+ </head>
+ <body>
+  <div class="welcome-screen" id="welcomeScreen">
+   <div class="background-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+   </div>
+   <h1>
+    Welcome to Admin Panel
+   </h1>
+   <button id="getStartedBtn">
+    Get Started
+   </button>
+  </div>
+  <div class="container" id="loginContainer" style="display: none;">
+   <div class="left">
+    <img alt="Mobile shop logo" height="50" src="https://storage.googleapis.com/a1aa/image/xjWgo39pdyqiHJQamZYK0mds703qWp8YkcWSAhNmL19zQqfJA.jpg" width="50"/>
+    <h1>
+     Welcome to Admin Panel
+    </h1>
+    <p>
+     Manage your mobile shop efficiently and effectively!
+    </p>
+    <div class="example-file">
+     <img alt="Admin panel interface" height="300" src="https://storage.googleapis.com/a1aa/image/j8x82BOLPP7jNpfo5MORr286GjrmXycIfdIBQserDQWnGS9nA.jpg" width="400"/>
+     <img alt="Admin avatar" class="avatar" height="40" src="https://storage.googleapis.com/a1aa/image/AsoNsdjKEbZEKNaYmvBiDfmVY64BvfRblrHANP4kY9aRDpenA.jpg" width="40"/>
+    </div>
+   </div>
+   <div class="right">
+    <h2>
+     Admin Login
+    </h2>
+    <form id="loginForm">
+     <div id="errorContainer"></div>
+     <label for="username">
+      Username
+     </label>
+     <input id="username" placeholder="admin" type="text"/>
+     <label for="password">
+      Password
+     </label>
+     <input id="password" placeholder="********" type="password"/>
+     <div class="forgot-password">
+      <a href="#">
+       Reset Password
+      </a>
+     </div>
+     <div class="remember-me">
+      <input id="remember" type="checkbox"/>
+      <label for="remember">
+       Remember Password
+      </label>
+     </div>
+     <button type="submit">
+      Login
+     </button>
+    </form>
+   </div>
+  </div>
+  <script>
+   gsap.to(".container", { duration: 1, opacity: 1 });
+    gsap.to(".left", { duration: 1, x: 0, delay: 0.5 });
+    gsap.to(".right", { duration: 1, x: 0, delay: 0.5 });
+
+    // Function to check if user is already authenticated
+    function checkAuthentication() {
+        const authKey = localStorage.getItem('authKey');
+        
+        if (authKey) {
+            // If authKey exists, redirect to the index page
+            window.location.href = '/index.html';
+        }
+    }
+
+    // Utility function to clear input fields
+    function clearInputFields(...fields) {
+        fields.forEach(field => field.value = '');
+    }
+
+    // Utility function to display error messages
+    function displayError(message) {
+        const errorContainer = document.getElementById('errorContainer');
+        errorContainer.innerHTML = `<div class="error-message">${message}</div>`;
+    }
+
+    // Utility function to handle API call
+    async function loginUser(username, password) {
+        const apiUrl = `http://127.0.0.1:5000/login?username=${username}&password=${password}`;
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Login failed!');
+        }
+        return response.json();
+    }
+
+    // Event listener for "Get Started" button
+    document.getElementById('getStartedBtn').addEventListener('click', () => {
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const loginContainer = document.getElementById('loginContainer');
+
+        gsap.timeline()
+            .to(welcomeScreen, { duration: 1, opacity: 0, y: -100, ease: "power2.inOut", onComplete: () => {
+                welcomeScreen.style.display = 'none';
+                loginContainer.style.display = 'flex';
+            }})
+            .fromTo(loginContainer, { opacity: 0, y: 100 }, { duration: 1, opacity: 1, y: 0, ease: "power2.inOut" });
+    });
+
+    // Event listener for form submission
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (!username || !password) {
+            // Add error class to input fields
+            if (!username) {
+                usernameInput.classList.add('error');
+            }
+            if (!password) {
+                passwordInput.classList.add('error');
+            }
+
+            // Remove error class after animation
+            setTimeout(() => {
+                usernameInput.classList.remove('error');
+                passwordInput.classList.remove('error');
+            }, 300);
+
+            displayError("Please fill in both fields.");
+            return;
+        }
+
+        try {
+            const data = await loginUser(username, password);
+
+            localStorage.setItem('authKey', data.auth_key);
+
+            clearInputFields(usernameInput, passwordInput);
+
+            alert(data.message);
+
+            // Animate the transition to the next page
+            gsap.timeline()
+                .to(".container", { duration: 1, opacity: 0, y: -100, ease: "power2.inOut", onComplete: () => {
+                    window.location.href = '/index.html';
+                }});
+        } catch (error) {
+            displayError(error.message);
+            console.error(error);
+
+            // Add error class to input fields
+            gsap.fromTo([usernameInput, passwordInput], { x: -10 }, { x: 10, duration: 0.1, yoyo: true, repeat: 5, ease: "power2.inOut", onComplete: () => {
+                usernameInput.classList.add('error');
+                passwordInput.classList.add('error');
+                setTimeout(() => {
+                    usernameInput.classList.remove('error');
+                    passwordInput.classList.remove('error');
+                }, 300);
+            }});
+        }
+    });
+
+    // Check if the user is already authenticated when the page loads
+    checkAuthentication();
+  </script>
+ </body>
+</html>

@@ -1,0 +1,27 @@
+http://127.0.0.1:5000//repairingdevice/edit?auth_key=98fb2894-ada0-4b1b-aefe-2e11f66dac12&id=123&customer_name=John Doe&phone_number=9876543210&received_by=Jane Smith&company=Apple&model=iPhone 12&device_condition=Broken&repairing_status=In Progress&repairing_cost=150.00&estimated_delivery_date=2024-12-25&parts_replaced=Screen, Battery&bill_status=Unpaid&due_price=100.00&advance_payment=50.00&payment_method=Credit&delivery_status=Pending&technician_name=Mark Lee
+
+
+{
+  "repairing_devices": [
+    {
+      "advance_payment": 20.0,
+      "bill_status": "Unpaid",
+      "company": "apple",
+      "customer_name": "sksohel",
+      "date_added": "Mon, 23 Dec 2024 04:13:40 GMT",
+      "delivery_status": "Pending",
+      "device_condition": "dead",
+      "due_price": 0.0,
+      "estimated_delivery_date": "Mon, 23 Dec 2024 00:00:00 GMT",
+      "id": 1,
+      "model": "6s",
+      "parts_replaced": "N/A",
+      "payment_method": "cash",
+      "phone_number": "7865840930",
+      "received_by": "Sksohel",
+      "repairing_cost": 2000.0,
+      "repairing_status": "Pending",
+      "technician_name": "N/A"
+    }
+  ]
+}

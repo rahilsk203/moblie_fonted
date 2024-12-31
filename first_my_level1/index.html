@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Side Nav</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+  <link rel="stylesheet" href="style.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+ <!-- Import jsPDF library -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
+</head>
+<body>
+    <!-- selling main content -->
+    <div id="selling-main" onclick="toggleNavClose()">
+        <!-- Main Container for Selling Products -->
+        <div id="selling-container">
+            
+            <!-- Dashboard Header for Selling Products -->
+            <div id="dashboard-header">
+                <div class="search-bar">
+                    <input id="search-input-selling" type="text" id="selling-search-input-container" placeholder="Search phone, etc..." />
+                    <i class="ri-search-line"></i>
+                </div>
+                <div class="actions">
+                    <!-- Profile Section -->
+                    <div class="profile">
+                        <img src="profile.jpg" alt="Profile Picture" />
+                        <span>sksohel</span>
+                        <small>Admin</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Header Section for Selling Products -->
+            <div id="product-header">
+                <div class="title">
+                    <h2>Accessories List</h2>
+                    <p>Monitor your store's progress to increase sales and efficiency.</p>
+                </div>
+                <div class="buttons">
+                    <button class="export btn" onclick="accessoriesDataExportpdf()">Export</button>
+                    <button class="add-product" id="openPopupButton2" >+ Add Product</button>
+                </div>
+            </div>
+
+            <!-- Table to Display Product Details -->
+            <div class="table-wrapper">
+                <table id="table-3">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Accessory Name</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>Company</th>
+                            <th>Unit Price ($)</th>
+                            <th>Initial Stock</th>
+                            <th>Current Stock</th>
+                            <th>Stock Out</th>
+                            <th>Minimum Stock</th>
+                            <th>Times Sold</th>
+                            <th>Last Purchase Date</th>
+                            <th>Last Purchase Quantity</th>
+                            <th>Add Date</th>
+                            <th>Alert</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="selling-details">
+                        <!-- Dynamic rows for Selling Products will be populated here by JavaScript -->
+                         
+        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- accessories popup window -->
+<div id="popupForm2" class="accessory-popup hidden">
+  <div class="accessory-popup-content">
+    <button  class="accessory-material-close-btn" aria-label="Close" onclick="closePopup2()">&times;</button>
+    <h2 class="accessory-popup-title">Accessory Details</h2>
+    <form id="accessoryForm" class="accessory-material-form">
+
+      <!-- Accessory Name -->
+      <div class="accessory-form-group">
+        <label for="accessory-accessoryName" class="accessory-material-label">Accessory Name</label>
+        <input type="text" id="accessory-accessoryName" name="accessory-accessoryName" class="accessory-material-input" placeholder="Enter Accessory Name" required>
+      </div>
+
+      <!-- Type -->
+      <div class="accessory-form-group">
+  <label for="accessory-type" class="accessory-material-label">Type</label>
+  <input type="text" id="accessory-type" name="accessory-type" class="accessory-material-input" placeholder="Enter Type (e.g., Wired or Wireless)" required>
+</div>
+
+      <!-- Company -->
+      <div class="accessory-form-group">
+        <label for="accessory-company" class="accessory-material-label">Company</label>
+        <input type="text" id="accessory-company" name="accessory-company" class="accessory-material-input" placeholder="Enter Company Name" required>
+      </div>
+
+      <!-- Category -->
+      <div class="accessory-form-group">
+        <label for="accessory-category" class="accessory-material-label">Category</label>
+        <input type="text" id="accessory-category" name="accessory-category" class="accessory-material-input" placeholder="Enter Category" required>
+      </div>
+
+      <!-- Initial Stock -->
+      <div class="accessory-form-group">
+        <label for="accessory-initialStock" class="accessory-material-label">Initial Stock</label>
+        <input type="number" id="accessory-initialStock" name="accessory-initialStock" class="accessory-material-input" placeholder="Enter Initial Stock" required>
+      </div>
+
+      <!-- Added Stock -->
+      <div class="accessory-form-group">
+        <label for="accessory-addedStock" class="accessory-material-label">Added Stock</label>
+        <input type="number" id="accessory-addedStock" name="accessory-addedStock" class="accessory-material-input" placeholder="Enter Added Stock" required>
+      </div>
+
+      <!-- Unit Price -->
+      <div class="accessory-form-group">
+        <label for="accessory-unitPrice" class="accessory-material-label">Unit Price</label>
+        <input type="number" id="accessory-unitPrice" name="accessory-unitPrice" class="accessory-material-input" placeholder="Enter Unit Price" required>
+      </div>
+
+      <!-- Minimum Stock -->
+      <div class="accessory-form-group">
+        <label for="accessory-minimumStock" class="accessory-material-label">Minimum Stock</label>
+        <input type="number" id="accessory-minimumStock" name="accessory-minimumStock" class="accessory-material-input" placeholder="Enter Minimum Stock" required>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="accessory-form-group">
+        <button type="submit" class="accessory-material-btn accessory-submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- accessories update popup window -->
+
+<div id="popupForm3" class="accessory-popup hidden">
+  <div class="accessory-popup-content">
+    <button  class="accessory-material-close-btn" aria-label="Close" onclick="closePopup3()">&times;</button>
+    <h2 class="accessory-popup-title">Update Accessory Stock</h2>
+    <form id="accessoryForm1" class="accessory-material-form" >
+
+      <!-- Added Stock -->
+      <div class="accessory-form-group">
+        <label for="accessory-addedStock" class="accessory-material-label">Added Stock</label>
+        <input type="number" id="accessory-addedStock1" name="added_stock" class="accessory-material-input" placeholder="Enter Added Stock" required>
+      </div>
+
+      <!-- Last Purchase Quantity -->
+      <div class="accessory-form-group">
+        <label for="accessory-lastPurchaseQuantity" class="accessory-material-label">Last Purchase Quantity</label>
+        <input type="number" id="accessory-lastPurchaseQuantity1" name="last_purchase_quantity" class="accessory-material-input" placeholder="Enter Last Purchase Quantity" required>
+      </div>
+
+      <!-- Unit Price -->
+      <div class="accessory-form-group">
+        <label for="accessory-unitPrice"class="accessory-material-label">Unit Price</label>
+        <input type="number" id="accessory-unitPrice1" name="unit_price" class="accessory-material-input" placeholder="Enter Unit Price" required>
+      </div>
+
+      <!-- Minimum Stock -->
+      <div class="accessory-form-group">
+        <label for="accessory-minimumStock" class="accessory-material-label">Minimum Stock</label>
+        <input type="number" id="accessory-minimumStock1" name="minimum_stock" class="accessory-material-input" placeholder="Enter Minimum Stock" required>
+      </div>
+
+      <!-- Times Sold -->
+      <div class="accessory-form-group">
+        <label for="accessory-timesSold" class="accessory-material-label">Times Sold</label>
+        <input type="number" id="accessory-timesSold1" name="times_sold" class="accessory-material-input" placeholder="Enter Times Sold" required>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="accessory-form-group">
+        <button type="submit" class="accessory-material-btn accessory-submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- repairing-accessories-dashboard -->
+<div id="repairingaccessorie-main" onclick="toggleNavClose()">
+    <!-- Main Container -->
+    <div id="repairingaccessorie-container">
+
+        <!-- Dashboard Header -->
+        <div id="dashboard-header">
+            <div class="search-bar">
+                <input type="text" id="repairingaccessorie-search-input-container" placeholder="Search phone, etc..." />
+                <i class="ri-search-line"></i>
+            </div>
+            <div class="actions">
+                <!-- Profile Section -->
+                <div class="profile">
+                    <img src="profile.jpg" alt="Profile Picture" />
+                    <span>sksohel</span>
+                    <small>Admin</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Header -->
+        <div id="product-header">
+            <div class="title">
+                <h2>Repairing Accessories</h2>
+                <p>Monitor your store's progress to increase your sales.</p>
+            </div>
+            <div class="buttons">
+                <button class="export btn" onclick="repairingaccessoriesDataExportpdf()">Export</button>
+                <button class="add-product" id="repairingaccessorie-popup" onclick="openPopup4()">+ Add Product</button>
+            </div>
+        </div>
+
+        <!-- Phone Details Table -->
+        <div class="table-wrapper">
+            <table id="table-4">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Model</th>
+                        <th>repairing Cost</th>
+                        <th>Selling Cost</th>
+                        <th>Current Stock</th>
+                        <th>Minimum Stock</th>
+                        <th>Total Out Stock</th>
+                        <th>Last Purchase Quantity</th>
+                        <th>Last repairing Quantity</th>
+                        <th>Last Purchase Date</th>
+                        <th>Last repairing Date</th>
+                        <th>Alert</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="repairing-accessorie">
+                    <!-- Dynamic rows will be populated here by your backend -->
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Popup form -->
+<div id="popupForm4" class="accessory-popup hidden">
+  <div class="accessory-popup-content">
+    <button class="accessory-material-close-btn" aria-label="Close" onclick="closePopup3()">&times;</button>
+    <h2 class="accessory-popup-title">Update Accessory Stock</h2>
+    <form id="accessoryrepairingForm1" class="accessory-material-form" onsubmit="handleFormSubmit(event)">
+      <div class="accessory-form-group">
+        <label for="accessory-name" class="accessory-material-label">Name</label>
+        <input type="text" id="accessoryrepairing-name" name="name" class="accessory-material-input" placeholder="Enter Name" required>
+      </div>
+      <div class="accessory-form-group">
+        <label for="accessory-type" class="accessory-material-label">Type</label>
+        <input type="text" id="accessoryrepairing-type" name="type" class="accessory-material-input" placeholder="Enter Type" required>
+      </div>
+      <div class="accessory-form-group">
+        <label for="accessory-repairingCost" class="accessory-material-label">Repairing Cost</label>
+        <input type="number" id="accessoryrepairing-repairingCost" name="repairing_cost" class="accessory-material-input" placeholder="Enter Repairing Cost" required>
+      </div>
+      <div class="accessory-form-group">
+        <label for="accessory-sellingCost" class="accessory-material-label">Selling Cost</label>
+        <input type="number" id="accessoryrepairing-sellingCost" name="selling_cost" class="accessory-material-input" placeholder="Enter Selling Cost" required>
+      </div>
+      <div class="accessory-form-group">
+        <label for="accessory-currentStock" class="accessory-material-label">Current Stock</label>
+        <input type="number" id="accessoryrepairing-currentStock" name="current_stock" class="accessory-material-input" placeholder="Enter Current Stock" required>
+      </div>
+      <div class="accessory-form-group">
+        <label for="accessory-minimumStock" class="accessory-material-label">Minimum Stock</label>
+        <input type="number" id="accessoryrepairing-minimumStock" name="minimum_stock" class="accessory-material-input" placeholder="Enter Minimum Stock" required>
+      </div>
+      <div class="accessory-form-group">
+        <label for="accessory-company" class="accessory-material-label">Company</label>
+        <input type="text" id="accessoryrepairing-company" name="company" class="accessory-material-input" placeholder="Enter Company" required>
+      </div>
+      <div class="accessory-form-group">
+        <label for="accessory-model" class="accessory-material-label">Model</label>
+        <input type="text" id="accessoryrepairing-model" name="model" class="accessory-material-input" placeholder="Enter Model" required>
+      </div>
+      <div class="accessory-form-group">
+        <button type="submit" class="accessory-material-btn accessory-submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Popup form container -->
+<div id="popupForm5" class="accessory-popup hidden">
+  <!-- Content container for the popup -->
+  <div class="accessory-popup-content">
+    <!-- Close button for the popup -->
+    <button class="accessory-material-close-btn" aria-label="Close" onclick="closePopupEdit()">&times;</button>
+    <!-- Title of the popup -->
+    <h2 class="accessory-popup-title">Update Accessory Stock</h2>
+    
+    <!-- Form for updating accessory stock -->
+    <form id="accessoryStockForm-edit" class="accessory-material-form">
+      
+      <!-- Add stock input field -->
+      <div class="accessory-form-group">
+        <label for="accessory-addStock" class="accessory-material-label">Add Stock</label>
+        <input type="number" id="accessory-addStock" name="add_stock" class="accessory-material-input" placeholder="Enter Added Stock" >
+      </div>
+
+      <!-- Last purchase quantity input field -->
+      <div class="accessory-form-group">
+        <label for="accessory-lastPurchaseQuantity" class="accessory-material-label">Last Purchase Quantity</label>
+        <input type="number" id="accessory-lastPurchaseQuantity" name="last_purchase_quantity" class="accessory-material-input" placeholder="Enter Last Purchase Quantity" >
+      </div>
+
+      <!-- Last repairing quantity input field -->
+      <div class="accessory-form-group">
+        <label for="accessory-lastRepairingQuantity" class="accessory-material-label">Last Repairing Quantity</label>
+        <input type="number" id="accessory-lastRepairingQuantity" name="last_repairing_quantity" class="accessory-material-input" placeholder="Enter Last Repairing Quantity" >
+      </div>
+
+      <!-- Submit button for the form -->
+      <div class="accessory-form-group">
+        <button type="submit" class="accessory-material-btn accessory-submit-btn">Submit</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+    
+    <!-- dashboard Main Content -->
+    <div id="main" onclick="toggleNavClose()">
+       <div id="main-dasb"><h1>Collapsible Side Navigation</h1>
+        <p>The side navigation expands and collapses as per the design.</p></div>
+        <!-- Phone Manage -->
+        <div id="container">
+         <div id="dashboard-header">
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Search phone, etc..." />
+    <i class="ri-search-line"></i>
+  </div>
+  <div class="actions">
+    
+    <div class="profile">
+      <img src="profile.jpg" alt="Profile Picture" />
+      <span>sksohel</span>
+      <small>Admin</small>
+    </div>
+  </div>
+</div>
+<div id="product-header">
+  <div class="title">
+    <h2>Selling Phone List</h2>
+    <p>Monitor your store's progress to increase your sales.</p>
+  </div>
+  <div class="buttons">
+    <button class="export btn" onclick="generatePDF();">Export</button>
+    
+    <button class="add-product" id="openPopupBtn">+ Add Product</button>
+  </div>
+</div>
+  <div class="table-wrapper">
+    <table id="table-1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Company</th>
+          <th>Model Name</th>
+          <th>IMEI</th>
+          <th>Condition</th>
+          <th>Status</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="phonedetails">
+        <!-- Dynamic content will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+    </div>
+    
+  <!-- Popup Form -->
+  <div id="popupForm" class="popup hidden">
+  <div class="popup-content">
+    <button id="closePopupBtn" class="material-close-btn" aria-label="Close">&times;</button>
+    <h2 class="popup-title">Add Product Details</h2>
+    <form id="productForm" class="material-form">
+      <!-- Company -->
+      <div class="form-group">
+        <label for="company" class="material-label">Company</label>
+        <input type="text" id="company" name="company" class="material-input" placeholder="Enter Company Name" required>
+      </div>
+
+      <!-- Model Name -->
+      <div class="form-group">
+        <label for="modelName" class="material-label">Model Name</label>
+        <input type="text" id="modelName" name="modelName" class="material-input" placeholder="Enter Model Name" required>
+      </div>
+
+      <!-- IMEI -->
+      <div class="form-group">
+        <label for="imei" class="material-label">IMEI</label>
+        <input type="text" id="imei" name="imei" class="material-input" placeholder="Enter IMEI" required>
+      </div>
+
+      <!-- Condition -->
+      <div class="form-group">
+        <label for="condition" class="material-label">Condition</label>
+        <select id="condition" name="condition" class="material-select" required>
+          <option value="new">New</option>
+          <option value="old">Old</option>
+        </select>
+      </div>
+
+      <!-- Stock -->
+      <div class="form-group">
+        <label for="stock" class="material-label">Stock</label>
+        <select id="stock" name="stock" class="material-select" required>
+          <option value="available">Available</option>
+          <option value="sold-out">Sold Out</option>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group">
+        <label for="price" class="material-label">Price</label>
+        <input type="number" id="price" name="price" class="material-input" placeholder="Enter Price" required>
+      </div>
+
+
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="submit" class="material-btn submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Popup Form for Editing -->
+<div id="editPopupForm" class="popup hidden">
+  <div class="popup-content">
+    <button id="closeEditPopupBtn" class="material-close-btn" aria-label="Close">&times;</button>
+    <h2 class="popup-title">Edit Product Details</h2>
+    <form id="editProductForm" class="material-form">
+      <!-- Company -->
+      <div class="form-group">
+        <label for="editCompany" class="material-label">Company</label>
+        <input type="text" id="editCompany" name="company" class="material-input" required>
+      </div>
+
+      <!-- Model Name -->
+      <div class="form-group">
+        <label for="editModelName" class="material-label">Model Name</label>
+        <input type="text" id="editModelName" name="modelName" class="material-input" required>
+      </div>
+
+      <!-- IMEI -->
+      <div class="form-group">
+        <label for="editIMEI" class="material-label">IMEI</label>
+        <input type="text" id="editIMEI" name="imei" class="material-input" required>
+      </div>
+
+      <!-- Condition -->
+      <div class="form-group">
+        <label for="editCondition" class="material-label">Condition</label>
+        <select id="editCondition" name="condition" class="material-select" required>
+          <option value="new">New</option>
+          <option value="old">Old</option>
+        </select>
+      </div>
+
+      <!-- Stock -->
+      <div class="form-group">
+        <label for="editStock" class="material-label">Stock</label>
+        <select id="editStock" name="isAvailable" class="material-select" required>
+          <option value="yes">Available</option>
+          <option value="no">Sold Out</option>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group">
+        <label for="editPrice" class="material-label">Price</label>
+        <input type="number" id="editPrice" name="price" class="material-input" required>
+      </div>
+
+      <button type="submit" class="material-btn submit-btn">Save Changes</button>
+    </form>
+  </div>
+</div>
+    
+    <!-- Side Navigation -->
+    <div id="sideNav" class="sidenav">
+        <div class="logo">
+            <i class="fas fa-box"></i>
+            <span class="logo-text">Logo</span>
+        </div>
+        <ul class="nav-list">
+            <!-- Dashboard with Child Navigation -->
+            <li class="nav-item">
+                <a href="#dashboard" onclick="toggleMainContainer()">
+                    <i class="fas fa-home" onclick="toggleNav()"></i>
+                    <span class="nav-text">Dashboard</span>
+                    
+                </a>
+                
+            </li>
+            <li>
+                <a href="#schedule" onclick="toggleNav()">
+                    <i class="ri-product-hunt-fill"></i>
+                    <span class="nav-text">Product Manage</span>
+                    <i class="fas fa-chevron-down toggle-icon toggle-icon-1" onclick="toggleChildMenu1()" ></i>
+                </a>
+                <ul class="child-nav tooggle-icon" id="childDashboard1">
+                   <li><a onclick="togglePhoneContainer()" >Phone Manage</a></li>
+                    <li><a href="#statistics" onclick="toggleSellingContainer()">Accessories</a></li>
+                    <li><a href="#statistics" onclick="repairingaccessorie()">Repairing Accessories</a></li>
+                </ul>
+            </li>
+            <li onclick="toggleRepairingContainer()">
+                <a href="#reports" onclick="toggleNav()">
+                    <i class="ri-tools-fill"></i>
+                    <span class="nav-text">Repairing Device</span>
+                </a>
+            </li>
+            <li>
+                <a href="#documents" onclick="toggleNav()">
+                    <i class="fas fa-folder"></i>
+                    <span class="nav-text">Documents</span>
+                </a>
+            </li>
+            <li class="message-item" onclick="toggleNav()">
+                <a href="#message">
+                    <i class="fas fa-envelope"></i>
+                    <span class="nav-text">Message</span>
+                    <span class="badge">12</span>
+                </a>
+            </li>
+            <!-- New Settings Menu Item -->
+            <li>
+                <a href="#settings" onclick="toggleNav()">
+                    <i class="fas fa-cogs"></i>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </li>
+        </ul>
+        <div class="logout">
+            <a href="#logout" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-text">Log Out</span>
+            </a>
+        </div>
+        <button class="toggle-btn" onclick="toggleNavOpen()">☰</button>
+         
+ </div>
+
+    
+    <!-- repairing phone main container -->
+    <div id="repairing-main" onclick="toggleNavClose()">
+    <!-- Main Container -->
+    <div id="repairing-container">
+        
+        <!-- Dashboard Header -->
+        <div id="dashboard-header">
+            <div class="search-bar">
+                <input type="text" id="search-input-container" placeholder="Search phone, etc..." />
+                <i class="ri-search-line"></i>
+            </div>
+            <div class="actions">
+                <!-- Profile Section -->
+                <div class="profile">
+                    <img src="profile.jpg" alt="Profile Picture" />
+                    <span>sksohel</span>
+                    <small>Admin</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Header -->
+        <div id="product-header">
+            <div class="title">
+                <h2>Repairing Devices</h2>
+                <p>Monitor your store's progress to increase your sales.</p>
+            </div>
+            <div class="buttons">
+                <button class="export btn" onclick="exportRepairingDevicesToPDF();">Export</button>
+                <button class="add-product" id="OpenPopupwindow">+ Add Product</button>
+            </div>
+        </div>
+
+        <!-- Phone Details Table -->
+        <div class="table-wrapper">
+    <table id="table-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Phone Number</th>
+                <th>Company</th>
+                <th>Model</th>
+                <th>Device Condition</th>
+                <th>Reparing Status</th>
+                <th>Repairing Cost</th>
+                <th>Parts Replaced</th>
+                <th>Payment Method</th>
+                <th>Advance Payment</th>
+                <th>Due Price</th>
+                <th>Bill Status</th>
+                <th>Delivery Status</th>
+                <th>Estimated Delivery Date</th>
+                <th>Received By</th>
+                <th>Technician Name</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="phonedetails2">
+            <!-- Dynamic rows will be populated here by JavaScript -->
+            
+                
+            
+        </tbody>
+    </table>
+</div>
+
+
+
+        
+        <div id="repairing-items-container" class="hidden">
+    <div id="popupFormRepairing" class="repairing-popup">
+      <div class="repairing-popup-content">
+        <!-- Close Button -->
+        <button
+          id="closePopupBtn2"
+          class="repairing-material-close-btn"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+
+        <!-- Popup Title -->
+        <h2 class="repairing-popup-title">Repairing Phone Details</h2>
+
+        <!-- Repairing Form -->
+        <form id="repairingForm" class="repairing-material-form">
+          <!-- Customer Name -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-customerName"
+              class="repairing-material-label"
+            >
+              Customer Name
+            </label>
+            <input
+              type="text"
+              id="repairing-customerName"
+              name="repairing-customerName"
+              class="repairing-material-input"
+              placeholder="Enter Customer Name"
+              required
+            />
+          </div>
+
+          <!-- Phone Number -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-phoneNumber"
+              class="repairing-material-label"
+            >
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="repairing-phoneNumber"
+              name="repairing-phoneNumber"
+              class="repairing-material-input"
+              placeholder="Enter Phone Number"
+              required
+            />
+          </div>
+
+          <!-- Received By -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-receivedBy"
+              class="repairing-material-label"
+            >
+              Received By
+            </label>
+            <input
+              type="text"
+              id="repairing-receivedBy"
+              name="repairing-receivedBy"
+              class="repairing-material-input"
+              placeholder="Enter Receiver's Name"
+              required
+            />
+          </div>
+
+          <!-- Company -->
+          <div class="repairing-form-group">
+            <label for="repairing-company" class="repairing-material-label">
+              Company
+            </label>
+            <select
+              id="repairing-company"
+              name="repairing-company"
+              class="repairing-material-select"
+              required
+            >
+              <option value="" disabled selected>Select Company</option>
+              <option value="apple">Apple</option>
+              <option value="samsung">Samsung</option>
+              <option value="xiaomi">Xiaomi</option>
+            </select>
+          </div>
+
+          <!-- Model -->
+          <div class="repairing-form-group">
+            <label for="repairing-model" class="repairing-material-label">
+              Model
+            </label>
+            <input
+              type="text"
+              id="repairing-model"
+              name="repairing-model"
+              class="repairing-material-input"
+              placeholder="Enter Model Name"
+              required
+            />
+          </div>
+
+          <!-- Device Condition -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-condition"
+              class="repairing-material-label"
+            >
+              Device Condition
+            </label>
+            <select
+              id="repairing-condition"
+              name="repairing-condition"
+              class="repairing-material-select"
+              required
+            >
+              <option value="" disabled selected>Select Condition</option>
+              <option value="dead">Dead</option>
+              <option value="display-broken">Display Broken</option>
+              <option value="charging-problem">Charging Problem</option>
+              <option value="scratched">Scratched</option>
+              <option value="water-damaged">Water Damaged</option>
+            </select>
+          </div>
+
+          <!-- Repairing Cost -->
+          <div class="repairing-form-group">
+            <label for="repairing-cost" class="repairing-material-label">
+              Repairing Cost
+            </label>
+            <input
+              type="number"
+              id="repairing-cost"
+              name="repairing-cost"
+              class="repairing-material-input"
+              placeholder="Enter Repairing Cost"
+              required
+            />
+          </div>
+
+          <!-- Estimated Delivery Date -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-deliveryDate"
+              class="repairing-material-label"
+            >
+              Estimated Delivery Date
+            </label>
+            <input
+              type="date"
+              id="repairing-deliveryDate"
+              name="repairing-deliveryDate"
+              class="repairing-material-input"
+              required
+            />
+          </div>
+
+          <!-- Advance Payment -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-advance"
+              class="repairing-material-label"
+            >
+              Advance Payment
+            </label>
+            <input
+              type="number"
+              id="repairing-advance"
+              name="repairing-advance"
+              class="repairing-material-input"
+              placeholder="Enter Advance Payment"
+            />
+          </div>
+
+          <!-- Payment Method -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-paymentMethod"
+              class="repairing-material-label"
+            >
+              Payment Method
+            </label>
+            <select
+              id="repairing-paymentMethod"
+              name="repairing-paymentMethod"
+              class="repairing-material-select"
+              required
+            >
+              <option value="" disabled selected>Select Payment Method</option>
+              <option value="cash">Cash</option>
+              <option value="card">Card</option>
+              <option value="online">Online Payment</option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="repairing-form-group">
+            <button 
+              type="submit"
+              class="repairing-material-btn repairing-submit-btn"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+
+        <!-- Display Phone Number -->
+        <div
+          id="displayPhoneNumber"
+          class="repairing-phone-number"
+        ></div>
+      </div>
+  </div>
+  
+</div> <!-- End of main -->
+
+<!-- edit repairing popup from -->
+<div id="popupForm1" class="repairing-popup hidden">
+  <div class="repairing-popup-content">
+    <button id="closePopupBtn1" class="repairing-material-close-btn" aria-label="Close">&times;</button>
+    <h2 class="repairing-popup-title">Repairing Phone Details</h2>
+    <form id="repairingForm" class="repairing-material-form">
+  
+      <!-- Customer Name -->
+      <div class="repairing-form-group">
+        <label for="repairing-customerName" class="repairing-material-label">Customer Name</label>
+        <input type="text" id="repairing-customerName1" name="repairing-customerName" class="repairing-material-input" placeholder="Enter Customer Name" required>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="repairing-form-group">
+        <label for="repairing-phoneNumber" class="repairing-material-label">Phone Number</label>
+        <input type="text" id="repairing-phoneNumber1" name="repairing-phoneNumber" class="repairing-material-input" placeholder="Enter Phone Number" required>
+      </div>
+
+      <!-- Received By -->
+      <div class="repairing-form-group">
+        <label for="repairing-receivedBy" class="repairing-material-label">Received By</label>
+        <input type="text" id="repairing-receivedBy1" name="repairing-receivedBy" class="repairing-material-input" placeholder="Enter Receiver's Name" required>
+      </div>
+
+      <!-- Company -->
+      <div class="repairing-form-group">
+        <label for="repairing-company" class="repairing-material-label">Company</label>
+        <select id="repairing-company1" name="repairing-company" class="repairing-material-select" required>
+          <option value="" disabled selected>Select Company</option>
+          <option value="apple">Apple</option>
+<option value="samsung">Samsung</option>
+<option value="xiaomi">Xiaomi</option>
+<option value="oppo">Oppo</option>
+<option value="vivo">Vivo</option>
+<option value="realme">Realme</option>
+<option value="huawei">Huawei</option>
+<option value="lg">LG</option>
+<option value="oneplus">OnePlus</option>
+<option value="motorola">Motorola</option>
+<option value="sony">Sony</option>
+<option value="nokia">Nokia</option>
+<option value="asus">Asus</option>
+<option value="lenovo">Lenovo</option>
+<option value="google">Google</option>
+<option value="htc">HTC</option>
+<option value="meizu">Meizu</option>
+<option value="alcatel">Alcatel</option>
+<option value="zte">ZTE</option>
+<option value="infinix">Infinix</option>
+<option value="tecno">Tecno</option>
+<option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Model -->
+      <div class="repairing-form-group">
+        <label for="repairing-model" class="repairing-material-label">Model</label>
+        <input type="text" id="repairing-model1" name="repairing-model" class="repairing-material-input" placeholder="Enter Model Name" required>
+      </div>
+
+      <!-- Device Condition -->
+      <div class="repairing-form-group">
+        <label for="repairing-condition" class="repairing-material-label">Device Condition</label>
+        <select id="repairing-condition1" name="repairing-condition" class="repairing-material-select" required>
+          <option value="" disabled selected>Select Condition</option>
+          <option value="new">Dead</option>
+<option value="old">Display broken</option>
+<option value="damaged">Charging problem</option>
+<option value="scratched">Scratched</option>
+<option value="water-damaged">Water damaged</option>
+<option value="overheating">Overheating</option>
+<option value="slow">Slow performance</option>
+<option value="no-signal">No signal</option>
+<option value="battery-issue">Battery issue</option>
+<option value="unresponsive">Unresponsive touch</option>
+<option value="wifi-issue">Wi-Fi not working</option>
+<option value="bluetooth-issue">Bluetooth not working</option>
+<option value="audio-issue">Audio issue</option>
+<option value="camera-issue">Camera not working</option>
+<option value="speaker-issue">Speaker issue</option>
+<option value="microphone-issue">Microphone issue</option>
+<option value="screen-flicker">Screen flickering</option>
+<option value="button-issue">Button not working</option>
+<option value="software-crash">Software crash</option>
+<option value="virus-infected">Virus infected</option>
+<option value="storage-full">Storage full</option>
+<option value="gps-issue">GPS not working</option>
+<option value="system-boot-issue">System won't boot</option>
+<option value="touchscreen-issue">Touchscreen not responsive</option>
+<option value="overcharged">Overcharged</option>
+<option value="network-issue">Network issue</option>
+<option value="charging-port-issue">Charging port issue</option>
+        </select>
+      </div>
+
+      <!-- Repairing Status -->
+      <div class="repairing-form-group">
+        <label for="repairing-status" class="repairing-material-label">Repairing Status</label>
+        <select id="repairing-status1" name="repairing-status" class="repairing-material-select" required>
+          <option value="" disabled selected>Select Status</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+          <option value="on-hold">On Hold</option>
+        </select>
+      </div>
+
+      <!-- Repairing Cost -->
+      <div class="repairing-form-group">
+        <label for="repairing-cost" class="repairing-material-label">Repairing Cost</label>
+        <input type="number" id="repairing-cost1" name="repairing-cost" class="repairing-material-input" placeholder="Enter Repairing Cost" required>
+      </div>
+
+      <!-- Estimated Delivery Date -->
+      <div class="repairing-form-group">
+        <label for="repairing-deliveryDate" class="repairing-material-label">Estimated Delivery Date</label>
+        <input type="date" id="repairing-deliveryDate1" name="repairing-deliveryDate" class="repairing-material-input" required>
+      </div>
+
+      <!-- Parts Replaced -->
+      <div class="repairing-form-group">
+        <label for="repairing-parts" class="repairing-material-label">Parts Replaced</label>
+        <input type="text" id="repairing-parts1" name="repairing-parts" class="repairing-material-input" placeholder="Enter Parts Replaced (if any)">
+      </div>
+
+      <!-- Bill Status -->
+      <div class="repairing-form-group">
+        <label for="repairing-billStatus" class="repairing-material-label">Bill Status</label>
+        <select id="repairing-billStatus1" name="repairing-billStatus" class="repairing-material-select" required>
+          <option value="" disabled selected>Select Bill Status</option>
+          <option value="paid">Paid</option>
+          <option value="pending">Due</option>
+          <option value="partial">Partially Paid</option>
+        </select>
+      </div>
+
+      <!-- Due Price -->
+      <div class="repairing-form-group">
+        <label for="repairing-duePrice" class="repairing-material-label">Due Price</label>
+        <input type="number" id="repairing-duePrice1" name="repairing-duePrice" class="repairing-material-input" placeholder="Enter Due Price">
+      </div>
+
+      <!-- Advance Payment -->
+      <div class="repairing-form-group">
+        <label for="repairing-advance" class="repairing-material-label">Advance Payment</label>
+        <input type="number" id="repairing-advance1" name="repairing-advance" class="repairing-material-input" placeholder="Enter Advance Payment">
+      </div>
+
+      <!-- Payment Method -->
+      <div class="repairing-form-group">
+        <label for="repairing-paymentMethod" class="repairing-material-label">Payment Method</label>
+        <select id="repairing-paymentMethod1" name="repairing-paymentMethod" class="repairing-material-select" required>
+          <option value="" disabled selected>Select Payment Method</option>
+          <option value="cash">Cash</option>
+          <option value="card">Card</option>
+          <option value="online">Online Payment</option>
+        </select>
+      </div>
+
+      <!-- Delivery Status -->
+      <div class="repairing-form-group">
+        <label for="repairing-deliveryStatus" class="repairing-material-label">Delivery Status</label>
+        <select id="repairing-deliveryStatus1" name="repairing-deliveryStatus" class="repairing-material-select" required>
+          <option value="" disabled selected>Select Delivery Status</option>
+          <option value="delivered">Delivered</option>
+          <option value="not-delivered">Not Delivered</option>
+          <option value="pending">Pending</option>
+        </select>
+      </div>
+
+      <!-- Technician Name -->
+      <div class="repairing-form-group">
+        <label for="repairing-technician" class="repairing-material-label">Technician Name</label>
+        <input type="text" id="repairing-technician1" name="repairing-technician" class="repairing-material-input" placeholder="Enter Technician Name">
+      </div>
+
+      <!-- Submit Button -->
+      <div class="repairing-form-group">
+        <button type="submit" class="repairing-material-btn repairing-submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</div>
+
+
+<!-- Selling Products Main Container -->
+    
+
+<!-- Include the required libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Include intl-tel-input JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>

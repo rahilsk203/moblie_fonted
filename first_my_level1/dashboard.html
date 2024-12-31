@@ -1,0 +1,254 @@
+<div id="repairing-main">
+  <div id="repairing-container" onclick="toggleNavClose()">
+    <!-- Header Section -->
+    <div id="product-header">
+      <!-- Search Bar Section -->
+      
+        <div class="search-bar">
+    <input type="text" id="search-input" placeholder="Search phone, etc..." />
+    <i class="ri-search-line"></i>
+  </div>
+  <div class="actions">
+    
+    <div class="profile">
+      <img src="profile.jpg" alt="Profile Picture" />
+      <span>Rayna Vetovs</span>
+      <small>Admin</small>
+    </div>
+  </div>
+</div>
+
+      <!-- Title Section -->
+      <div class="title">
+        <h2>Repairing Phone List</h2>
+        <p>Monitor your Repairing Phone Details.</p>
+      </div>
+
+      <!-- Buttons Section -->
+      <div class="buttons">
+        <button class="export btn">Export</button>
+        <button class="add-product" id="OpenPopupwindow">+ Add Device</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Window Section -->
+  <div id="repairing-items-container" class="hidden">
+    <div id="popupFormRepairing" class="repairing-popup">
+      <div class="repairing-popup-content">
+        <!-- Close Button -->
+        <button
+          id="closePopupWindowBtn"
+          class="repairing-material-close-btn"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+
+        <!-- Popup Title -->
+        <h2 class="repairing-popup-title">Repairing Phone Details</h2>
+
+        <!-- Repairing Form -->
+        <form id="repairingForm" class="repairing-material-form">
+          <!-- Customer Name -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-customerName"
+              class="repairing-material-label"
+            >
+              Customer Name
+            </label>
+            <input
+              type="text"
+              id="repairing-customerName"
+              name="repairing-customerName"
+              class="repairing-material-input"
+              placeholder="Enter Customer Name"
+              required
+            />
+          </div>
+
+          <!-- Phone Number -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-phoneNumber"
+              class="repairing-material-label"
+            >
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="repairing-phoneNumber"
+              name="repairing-phoneNumber"
+              class="repairing-material-input"
+              placeholder="Enter Phone Number"
+              required
+            />
+          </div>
+
+          <!-- Received By -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-receivedBy"
+              class="repairing-material-label"
+            >
+              Received By
+            </label>
+            <input
+              type="text"
+              id="repairing-receivedBy"
+              name="repairing-receivedBy"
+              class="repairing-material-input"
+              placeholder="Enter Receiver's Name"
+              required
+            />
+          </div>
+
+          <!-- Company -->
+          <div class="repairing-form-group">
+            <label for="repairing-company" class="repairing-material-label">
+              Company
+            </label>
+            <select
+              id="repairing-company"
+              name="repairing-company"
+              class="repairing-material-select"
+              required
+            >
+              <option value="" disabled selected>Select Company</option>
+              <option value="apple">Apple</option>
+              <option value="samsung">Samsung</option>
+              <option value="xiaomi">Xiaomi</option>
+            </select>
+          </div>
+
+          <!-- Model -->
+          <div class="repairing-form-group">
+            <label for="repairing-model" class="repairing-material-label">
+              Model
+            </label>
+            <input
+              type="text"
+              id="repairing-model"
+              name="repairing-model"
+              class="repairing-material-input"
+              placeholder="Enter Model Name"
+              required
+            />
+          </div>
+
+          <!-- Device Condition -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-condition"
+              class="repairing-material-label"
+            >
+              Device Condition
+            </label>
+            <select
+              id="repairing-condition"
+              name="repairing-condition"
+              class="repairing-material-select"
+              required
+            >
+              <option value="" disabled selected>Select Condition</option>
+              <option value="dead">Dead</option>
+              <option value="display-broken">Display Broken</option>
+              <option value="charging-problem">Charging Problem</option>
+              <option value="scratched">Scratched</option>
+              <option value="water-damaged">Water Damaged</option>
+            </select>
+          </div>
+
+          <!-- Repairing Cost -->
+          <div class="repairing-form-group">
+            <label for="repairing-cost" class="repairing-material-label">
+              Repairing Cost
+            </label>
+            <input
+              type="number"
+              id="repairing-cost"
+              name="repairing-cost"
+              class="repairing-material-input"
+              placeholder="Enter Repairing Cost"
+              required
+            />
+          </div>
+
+          <!-- Estimated Delivery Date -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-deliveryDate"
+              class="repairing-material-label"
+            >
+              Estimated Delivery Date
+            </label>
+            <input
+              type="date"
+              id="repairing-deliveryDate"
+              name="repairing-deliveryDate"
+              class="repairing-material-input"
+              required
+            />
+          </div>
+
+          <!-- Advance Payment -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-advance"
+              class="repairing-material-label"
+            >
+              Advance Payment
+            </label>
+            <input
+              type="number"
+              id="repairing-advance"
+              name="repairing-advance"
+              class="repairing-material-input"
+              placeholder="Enter Advance Payment"
+            />
+          </div>
+
+          <!-- Payment Method -->
+          <div class="repairing-form-group">
+            <label
+              for="repairing-paymentMethod"
+              class="repairing-material-label"
+            >
+              Payment Method
+            </label>
+            <select
+              id="repairing-paymentMethod"
+              name="repairing-paymentMethod"
+              class="repairing-material-select"
+              required
+            >
+              <option value="" disabled selected>Select Payment Method</option>
+              <option value="cash">Cash</option>
+              <option value="card">Card</option>
+              <option value="online">Online Payment</option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="repairing-form-group">
+            <button
+              type="submit"
+              class="repairing-material-btn repairing-submit-btn"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+
+        <!-- Display Phone Number -->
+        <div
+          id="displayPhoneNumber"
+          class="repairing-phone-number"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+,iskoo pura update kardaa

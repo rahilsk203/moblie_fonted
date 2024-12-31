@@ -1,0 +1,38 @@
+<!-- Popup form container -->
+<div id="popupForm5" class="accessory-popup hidden">
+  <!-- Content container for the popup -->
+  <div class="accessory-popup-content">
+    <!-- Close button for the popup -->
+    <button class="accessory-material-close-btn" aria-label="Close">&times;</button>
+    <!-- Title of the popup -->
+    <h2 class="accessory-popup-title">Update Accessory Stock</h2>
+    
+    <!-- Form for updating accessory stock -->
+    <form id="accessoryStockForm-edit" class="accessory-material-form">
+      
+      <!-- Add stock input field -->
+      <div class="accessory-form-group">
+        <label for="accessory-addStock" class="accessory-material-label">Add Stock</label>
+        <input type="number" id="accessory-addStock" name="add_stock" class="accessory-material-input" placeholder="Enter Added Stock" required>
+      </div>
+
+      <!-- Last purchase quantity input field -->
+      <div class="accessory-form-group">
+        <label for="accessory-lastPurchaseQuantity" class="accessory-material-label">Last Purchase Quantity</label>
+        <input type="number" id="accessory-lastPurchaseQuantity" name="last_purchase_quantity" class="accessory-material-input" placeholder="Enter Last Purchase Quantity" required>
+      </div>
+
+      <!-- Last repairing quantity input field -->
+      <div class="accessory-form-group">
+        <label for="accessory-lastRepairingQuantity" class="accessory-material-label">Last Repairing Quantity</label>
+        <input type="number" id="accessory-lastRepairingQuantity" name="last_repairing_quantity" class="accessory-material-input" placeholder="Enter Last Repairing Quantity" required>
+      </div>
+
+      <!-- Submit button for the form -->
+      <div class="accessory-form-group">
+        <button type="submit" class="accessory-material-btn accessory-submit-btn">Submit</button>
+      </div>
+
+    </form>
+  </div>
+</div>
