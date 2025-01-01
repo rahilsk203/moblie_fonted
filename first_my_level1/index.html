@@ -8,14 +8,18 @@
     <link rel="stylesheet" href="styles.css">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
   <link rel="stylesheet" href="style.css">
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"
 />
+
  <!-- Import jsPDF library -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
 
 </head>
 <body>
@@ -152,7 +156,7 @@
 
 <div id="popupForm3" class="accessory-popup hidden">
   <div class="accessory-popup-content">
-    <button  class="accessory-material-close-btn" aria-label="Close" onclick="closePopup3()">&times;</button>
+    <button  class="accessory-material-close-btn" aria-label="Close" onclick="closePopupEditAccessories()">&times;</button>
     <h2 class="accessory-popup-title">Update Accessory Stock</h2>
     <form id="accessoryForm1" class="accessory-material-form" >
 
@@ -260,7 +264,7 @@
 
 <!-- Popup form -->
 <div id="popupForm4" class="accessory-popup hidden">
-  <div class="accessory-popup-content">
+  <div class="accessory-popup-content" >
     <button class="accessory-material-close-btn" aria-label="Close" onclick="closePopup3()">&times;</button>
     <h2 class="accessory-popup-title">Update Accessory Stock</h2>
     <form id="accessoryrepairingForm1" class="accessory-material-form" onsubmit="handleFormSubmit(event)">
@@ -347,7 +351,44 @@
     <!-- dashboard Main Content -->
     <div id="main" onclick="toggleNavClose()">
        <div id="main-dasb"><h1>Collapsible Side Navigation</h1>
-        <p>The side navigation expands and collapses as per the design.</p></div>
+       <div class="dashboard-container">
+        <div class="header-dashboard">
+            <div>
+                <h1>Total Selling details </h1>
+                <p class="total-expenses">₹ 708.84</p>
+                <div class="date-range">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>Jun 07, 2024 → Jun 13, 2024</span>
+                </div>
+            </div>
+        </div>
+        <div class="chart">
+            <div class="pie-chart"></div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="color-box color-bills"></div>
+                    <div class="label">Bills Payment</div>
+                    <div class="amount">₹ 52.66</div>
+                    <div class="percentage">17%</div>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box color-foods"></div>
+                    <div class="label">Foods and Drinks</div>
+                    <div class="amount">₹ 635.18</div>
+                    <div class="percentage">63%</div>
+                </div>
+                <div class="legend-item">
+                    <div class="color-box color-uncategorized"></div>
+                    <div class="label">Uncategorized</div>
+                    <div class="amount">₹ 21.00</div>
+                    <div class="percentage">10%</div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+        
         <!-- Phone Manage -->
         <div id="container">
          <div id="dashboard-header">
@@ -509,6 +550,7 @@
 </div>
     
     <!-- Side Navigation -->
+    <!-- Side Navigation -->
     <div id="sideNav" class="sidenav">
         <div class="logo">
             <i class="fas fa-box"></i>
@@ -518,7 +560,7 @@
             <!-- Dashboard with Child Navigation -->
             <li class="nav-item">
                 <a href="#dashboard" onclick="toggleMainContainer()">
-                    <i class="fas fa-home" onclick="toggleNav()"></i>
+                    <i class="fas fa-home button-with-ripple" onclick="toggleNav()"></i>
                     <span class="nav-text">Dashboard</span>
                     
                 </a>
@@ -528,7 +570,7 @@
                 <a href="#schedule" onclick="toggleNav()">
                     <i class="ri-product-hunt-fill"></i>
                     <span class="nav-text">Product Manage</span>
-                    <i class="fas fa-chevron-down toggle-icon toggle-icon-1" onclick="toggleChildMenu1()" ></i>
+                    <i class="fas fa-chevron-down toggle-icon toggle-icon-1 " onclick="toggleChildMenu1()" ></i>
                 </a>
                 <ul class="child-nav tooggle-icon" id="childDashboard1">
                    <li><a onclick="togglePhoneContainer()" >Phone Manage</a></li>
@@ -542,10 +584,10 @@
                     <span class="nav-text">Repairing Device</span>
                 </a>
             </li>
-            <li>
+            <li onclick="togglebillingContainer()">
                 <a href="#documents" onclick="toggleNav()">
                     <i class="fas fa-folder"></i>
-                    <span class="nav-text">Documents</span>
+                    <span class="nav-text">Billing</span>
                 </a>
             </li>
             <li class="message-item" onclick="toggleNav()">
@@ -572,8 +614,78 @@
         <button class="toggle-btn" onclick="toggleNavOpen()">☰</button>
          
  </div>
+ 
+ 
+ <!-- billing main container -->
+ 
+ <div id="billing-main">
 
-    
+ <div class="bling-container">
+   <div class="card" tabindex="0">
+    <img alt="Mobile invoice icon" height="50" src="https://storage.googleapis.com/a1aa/image/q1Y68oYL8UbHCBldP13L1PgH8dCnfDZrznIuFc84O4Qm7OAKA.jpg" width="50"/>
+    <h3>
+     Mobile Invoice
+    </h3>
+    <p>
+     Manage all your mobile invoices in one place.
+    </p>
+    <div class="count">
+     150
+     <span>
+      Total Invoices
+     </span>
+    </div>
+    <button>
+     Generate
+    </button>
+   </div>
+   <div class="card" tabindex="0">
+    <img alt="Repairing invoice icon" height="50" src="https://storage.googleapis.com/a1aa/image/mR7tGEl24voZF5GgfXLiKfdcoyNxve7szmfkzlfpbSdF6uDgC.jpg" width="50"/>
+    <h3>
+     Repairing Invoice
+    </h3>
+    <p>
+     Keep track of all your repair invoices efficiently.
+    </p>
+    <div class="count">
+     200
+     <span>
+      Total Invoices
+     </span>
+    </div>
+    <button>
+     Generate
+    </button>
+   </div>
+   <div class="card" tabindex="0">
+    <img alt="Purchase invoice icon" height="50" src="https://storage.googleapis.com/a1aa/image/OVlFbEIeAt0Dcq6A989qXYCnN8XG0PfQOVQcUwCBQJ4O3dAUA.jpg" width="50"/>
+    <h3>
+     Purchase Invoice
+    </h3>
+    <p>
+     Easily manage all your purchase invoices.
+    </p>
+    <div class="count">
+     300
+     <span>
+      Total Invoices
+     </span>
+    </div>
+    <button>
+     Generate
+    </button>
+   </div>
+  </div>
+</div>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
     <!-- repairing phone main container -->
     <div id="repairing-main" onclick="toggleNavClose()">
     <!-- Main Container -->
@@ -641,11 +753,8 @@
         </tbody>
     </table>
 </div>
-
-
-
-        
-        <div id="repairing-items-container" class="hidden">
+<!-- repairing device -->     
+   <div id="repairing-items-container" class="hidden">
     <div id="popupFormRepairing" class="repairing-popup">
       <div class="repairing-popup-content">
         <!-- Close Button -->
@@ -863,6 +972,10 @@
   
 </div> <!-- End of main -->
 
+
+
+
+
 <!-- edit repairing popup from -->
 <div id="popupForm1" class="repairing-popup hidden">
   <div class="repairing-popup-content">
@@ -1049,16 +1162,95 @@
 
 </div>
 
-
 <!-- Selling Products Main Container -->
     
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
+<script>
+  // Define the function to execute animations
+  function executeAnimations() {
+    // Animate the main container
+    gsap.from("#selling-container", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+    });
+    gsap.from("#phonedetails2", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+    });
+    gsap.from("#phonedetails", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+    });
+    gsap.from("#repairing-accessorie", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+    });
+
+    // Animate the header section
+    gsap.from("#dashboard-header", {
+      opacity: 0,
+      x: -50,
+      duration: 1,
+      delay: 0.5,
+      ease: "power2.out",
+    });
+
+    // Animate the product header
+    gsap.from("#product-header", {
+      opacity: 0,
+      x: 50,
+      duration: 1,
+      delay: 1,
+      ease: "power2.out",
+    });
+
+    // Animate the profile section
+    gsap.from(".profile", {
+      opacity: 0,
+      scale: 0.5,
+      duration: 1,
+      delay: 1.2,
+      ease: "back.out(1.7)",
+    });
+  }
+
+  // Button hover animations
+  document.querySelectorAll(".buttons button").forEach((button) => {
+    button.addEventListener("mouseenter", () => {
+      gsap.to(button, {
+        scale: 1.1,
+        duration: 0.3,
+        ease: "power2.inOut",
+      });
+    });
+    button.addEventListener("mouseleave", () => {
+      gsap.to(button, {
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.inOut",
+      });
+    });
+  });
+
+  
+</script>
 <!-- Include the required libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
 
   <!-- Include intl-tel-input JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
 
     <script src="script.js"></script>
 </body>

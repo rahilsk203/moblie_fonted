@@ -177,8 +177,10 @@ function togglePhoneContainer() {
 document.getElementById("repairing-main").style.display = "none";
     document.getElementById("selling-main").style.display = "none";
     document.getElementById("repairingaccessorie-main").style.display = "none";
+    document.getElementById("billing-main").style.display = "none";
     // Fetch and display phone data
     fetchAndSavePhoneData();
+    executeAnimations();
 }
 
 // Function to show phone container and hide main content
@@ -189,6 +191,7 @@ function toggleMainContainer() {
     
 document.getElementById("selling-main").style.display = "none";
 document.getElementById("repairingaccessorie-main").style.display = "none";
+document.getElementById("billing-main").style.display = "none";
 
     // Fetch and display phone data
     
@@ -210,8 +213,11 @@ function toggleNav() {
     sellingmain=document.getElementById("selling-main");
     sellingmain.style.marginLeft = "250px";
     repairingaccessorie.style.marginLeft = "250px";
+    const billingmain=document.getElementById("billing-main");
+    billingmain.style.marginLeft = "250px";
     // Select all span elements inside #sideNav
 const spans = document.querySelectorAll('#sideNav span');
+
 
 // Retrieve all text content from the span elements
 const spanTexts = Array.from(spans).map(span => span.textContent);
@@ -233,13 +239,15 @@ function toggleNavOpen() {
     const repairingcontainer = document.getElementById("repairing-main");
     const sellingmain = document.getElementById("selling-main");
     const repairingaccessorie = document.getElementById("repairingaccessorie-main");
-  
+  const billingmain=document.getElementById("billing-main");
+    
     
 
     if (sideNav.classList.contains("collapsed")) {
         // Remove the "collapsed" class and set margin to 250px
         sideNav.classList.remove("collapsed");
         main.style.marginLeft = "250px";
+        billingmain.style.marginLeft = "250px";
         repairingcontainer.style.marginLeft = "250px";
         sellingmain.style.marginLeft = "250px";
         repairingaccessorie.style.marginLeft = "250px";
@@ -254,6 +262,7 @@ function toggleNavOpen() {
         main.style.marginLeft = "75px";
         sellingmain.style.marginLeft = "75px";
         repairingcontainer.style.marginLeft = "75px";
+        billingmain.style.marginLeft = "75px";
         repairingaccessorie.style.marginLeft = "75px";
         // Sabhi span elements ko select karen jo sideNav ke andar hain
         hideSpanText();// Select all span elements inside #sideNav
@@ -276,6 +285,8 @@ function toggleNavClose() {
     sellingmain.style.marginLeft = "75px";
     const repairingaccessorie=document.getElementById("repairingaccessorie-main");
     repairingaccessorie.style.marginLeft = "75px";
+    const billingmain=document.getElementById("billing-main");
+    billingmain.style.marginLeft = "75px";
     hideSpanText();
     
 }
@@ -664,8 +675,10 @@ function toggleRepairingContainer() {
     document.getElementById("selling-main").style.display = "none";
     
      document.getElementById("repairingaccessorie-main").style.display = "none";
+     document.getElementById("billing-main").style.display = "none";
     
     fetchRepairingDevices();
+    executeAnimations();
     
 }
 
@@ -1084,9 +1097,9 @@ document.getElementById("selling-main").style.display = "block";
  document.getElementById("repairingaccessorie-main").style.display = "none";
     
 fetchAccessoryData();
-    
+    executeAnimations();
     // Fetch and display phone data
-    
+    document.getElementById("billing-main").style.display = "none";
 }
 
 let accessoryList = []; // Updated variable name
@@ -1316,7 +1329,16 @@ function closePopup3() {
   const popup = document.getElementById('popupForm1');
   popup.classList.add('hidden');
 }
-
+function closePopupEditAccessories() {
+  const popup = document.getElementById('popupForm3');
+  if (popup) {
+    popup.classList.add('hidden');
+    
+    if (popup.tagName === 'FORM') {
+      popup.reset();
+    }
+  }
+}
 
 function openPopup3(accessoryId) {
   // Fetch the accessory data based on the id (this could be done through an API request)
@@ -1677,7 +1699,7 @@ document.getElementById("selling-main").style.display = "none";
  document.getElementById("repairingaccessorie-main").style.display = "block";
     
 fetchRepairingAccessoryData();
-    
+    executeAnimations();
     // Fetch and display phone data
     
 }
@@ -1822,15 +1844,22 @@ function closePopup3() {
   }
 
   // Function to open the popup
-  function openPopup4() {
-    document.getElementById("popupForm4").classList.remove("hidden");
-  }
+ // Function to open the popup with GSAP animation
+function openPopup4() {
+  const popup = document.getElementById("popupForm4");
+  popup.classList.remove("hidden"); // Show the popup by removing 'hidden' class
+  
+  // Animate the popup content
+  
+}
 
-  // Function to close the popup
-  function closePopup3() {
-    document.getElementById("popupForm4").classList.add("hidden");
-  }
-
+// Function to close the popup with GSAP animation
+function closePopup3() {
+  const popup = document.getElementById("popupForm4");
+  
+  // Animate the popup content before hiding
+  
+}
 
 // Function to delete an accessory
 async function deleterepairingAccessory(id) {
@@ -2053,4 +2082,18 @@ function repairingaccessorieExportCompleteDataToPDF(dataArray) {
 
   // Save PDF
   doc.save("Repairing_Accessory_List.pdf");
+}
+
+
+
+function togglebillingContainer() {
+    document.getElementById("main-dasb").style.display = "none";
+    document.getElementById("container").style.display = "none";
+document.getElementById("repairing-main").style.display = "none";
+document.getElementById("selling-main").style.display = "none";
+ document.getElementById("repairingaccessorie-main").style.display = "none";
+ document.getElementById("billing-main").style.display = "block";
+    
+
+    
 }

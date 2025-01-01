@@ -1,254 +1,196 @@
-<div id="repairing-main">
-  <div id="repairing-container" onclick="toggleNavClose()">
-    <!-- Header Section -->
-    <div id="product-header">
-      <!-- Search Bar Section -->
-      
-        <div class="search-bar">
-    <input type="text" id="search-input" placeholder="Search phone, etc..." />
-    <i class="ri-search-line"></i>
-  </div>
-  <div class="actions">
-    
-    <div class="profile">
-      <img src="profile.jpg" alt="Profile Picture" />
-      <span>Rayna Vetovs</span>
-      <small>Admin</small>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Service Cards
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .bling-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: dropIn 0.5s forwards;
+        }
+        @keyframes dropIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.3em;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .card p {
+            font-size: 0.95em;
+            color: #666;
+            margin: 0 0 20px;
+        }
+        .card .count {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .card .count span {
+            font-size: 0.8em;
+            color: #666;
+        }
+        .card button {
+            background-color: #6c63ff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .card button:hover {
+            background-color: #5753d6;
+        }
+        .card button:focus {
+            background-color: #4a47b3;
+            color: #fff;
+            outline: none;
+        }
+        .card button:active {
+            background-color: #3d3a91;
+            color: #fff;
+        }
+        .card:focus-within {
+            border: 1px solid #6c63ff;
+            box-shadow: 0 0 10px #6c63ff;
+        }
+        @media (max-width: 768px) {
+            .card {
+                padding: 20px;
+            }
+            .card h3 {
+                font-size: 1.2em;
+            }
+            .card p {
+                font-size: 0.9em;
+            }
+            .card .count {
+                font-size: 1.4em;
+            }
+            .card button {
+                padding: 8px 16px;
+                font-size: 0.85em;
+            }
+        }
+        @media (max-width: 480px) {
+            .card {
+                padding: 15px;
+            }
+            .card h3 {
+                font-size: 1.1em;
+            }
+            .card p {
+                font-size: 0.85em;
+            }
+            .card .count {
+                font-size: 1.2em;
+            }
+            .card button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+        }
+  </style>
+ </head>
+ <body>
+  <div class="bling-container">
+   <div class="card" tabindex="0">
+    <img alt="Mobile invoice icon" height="50" src="https://storage.googleapis.com/a1aa/image/q1Y68oYL8UbHCBldP13L1PgH8dCnfDZrznIuFc84O4Qm7OAKA.jpg" width="50"/>
+    <h3>
+     Mobile Invoice
+    </h3>
+    <p>
+     Manage all your mobile invoices in one place.
+    </p>
+    <div class="count">
+     150
+     <span>
+      Total Invoices
+     </span>
     </div>
-  </div>
-</div>
-
-      <!-- Title Section -->
-      <div class="title">
-        <h2>Repairing Phone List</h2>
-        <p>Monitor your Repairing Phone Details.</p>
-      </div>
-
-      <!-- Buttons Section -->
-      <div class="buttons">
-        <button class="export btn">Export</button>
-        <button class="add-product" id="OpenPopupwindow">+ Add Device</button>
-      </div>
+    <button>
+     Generate
+    </button>
+   </div>
+   <div class="card" tabindex="0">
+    <img alt="Repairing invoice icon" height="50" src="https://storage.googleapis.com/a1aa/image/mR7tGEl24voZF5GgfXLiKfdcoyNxve7szmfkzlfpbSdF6uDgC.jpg" width="50"/>
+    <h3>
+     Repairing Invoice
+    </h3>
+    <p>
+     Keep track of all your repair invoices efficiently.
+    </p>
+    <div class="count">
+     200
+     <span>
+      Total Invoices
+     </span>
     </div>
-  </div>
-
-  <!-- Popup Window Section -->
-  <div id="repairing-items-container" class="hidden">
-    <div id="popupFormRepairing" class="repairing-popup">
-      <div class="repairing-popup-content">
-        <!-- Close Button -->
-        <button
-          id="closePopupWindowBtn"
-          class="repairing-material-close-btn"
-          aria-label="Close"
-        >
-          &times;
-        </button>
-
-        <!-- Popup Title -->
-        <h2 class="repairing-popup-title">Repairing Phone Details</h2>
-
-        <!-- Repairing Form -->
-        <form id="repairingForm" class="repairing-material-form">
-          <!-- Customer Name -->
-          <div class="repairing-form-group">
-            <label
-              for="repairing-customerName"
-              class="repairing-material-label"
-            >
-              Customer Name
-            </label>
-            <input
-              type="text"
-              id="repairing-customerName"
-              name="repairing-customerName"
-              class="repairing-material-input"
-              placeholder="Enter Customer Name"
-              required
-            />
-          </div>
-
-          <!-- Phone Number -->
-          <div class="repairing-form-group">
-            <label
-              for="repairing-phoneNumber"
-              class="repairing-material-label"
-            >
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="repairing-phoneNumber"
-              name="repairing-phoneNumber"
-              class="repairing-material-input"
-              placeholder="Enter Phone Number"
-              required
-            />
-          </div>
-
-          <!-- Received By -->
-          <div class="repairing-form-group">
-            <label
-              for="repairing-receivedBy"
-              class="repairing-material-label"
-            >
-              Received By
-            </label>
-            <input
-              type="text"
-              id="repairing-receivedBy"
-              name="repairing-receivedBy"
-              class="repairing-material-input"
-              placeholder="Enter Receiver's Name"
-              required
-            />
-          </div>
-
-          <!-- Company -->
-          <div class="repairing-form-group">
-            <label for="repairing-company" class="repairing-material-label">
-              Company
-            </label>
-            <select
-              id="repairing-company"
-              name="repairing-company"
-              class="repairing-material-select"
-              required
-            >
-              <option value="" disabled selected>Select Company</option>
-              <option value="apple">Apple</option>
-              <option value="samsung">Samsung</option>
-              <option value="xiaomi">Xiaomi</option>
-            </select>
-          </div>
-
-          <!-- Model -->
-          <div class="repairing-form-group">
-            <label for="repairing-model" class="repairing-material-label">
-              Model
-            </label>
-            <input
-              type="text"
-              id="repairing-model"
-              name="repairing-model"
-              class="repairing-material-input"
-              placeholder="Enter Model Name"
-              required
-            />
-          </div>
-
-          <!-- Device Condition -->
-          <div class="repairing-form-group">
-            <label
-              for="repairing-condition"
-              class="repairing-material-label"
-            >
-              Device Condition
-            </label>
-            <select
-              id="repairing-condition"
-              name="repairing-condition"
-              class="repairing-material-select"
-              required
-            >
-              <option value="" disabled selected>Select Condition</option>
-              <option value="dead">Dead</option>
-              <option value="display-broken">Display Broken</option>
-              <option value="charging-problem">Charging Problem</option>
-              <option value="scratched">Scratched</option>
-              <option value="water-damaged">Water Damaged</option>
-            </select>
-          </div>
-
-          <!-- Repairing Cost -->
-          <div class="repairing-form-group">
-            <label for="repairing-cost" class="repairing-material-label">
-              Repairing Cost
-            </label>
-            <input
-              type="number"
-              id="repairing-cost"
-              name="repairing-cost"
-              class="repairing-material-input"
-              placeholder="Enter Repairing Cost"
-              required
-            />
-          </div>
-
-          <!-- Estimated Delivery Date -->
-          <div class="repairing-form-group">
-            <label
-              for="repairing-deliveryDate"
-              class="repairing-material-label"
-            >
-              Estimated Delivery Date
-            </label>
-            <input
-              type="date"
-              id="repairing-deliveryDate"
-              name="repairing-deliveryDate"
-              class="repairing-material-input"
-              required
-            />
-          </div>
-
-          <!-- Advance Payment -->
-          <div class="repairing-form-group">
-            <label
-              for="repairing-advance"
-              class="repairing-material-label"
-            >
-              Advance Payment
-            </label>
-            <input
-              type="number"
-              id="repairing-advance"
-              name="repairing-advance"
-              class="repairing-material-input"
-              placeholder="Enter Advance Payment"
-            />
-          </div>
-
-          <!-- Payment Method -->
-          <div class="repairing-form-group">
-            <label
-              for="repairing-paymentMethod"
-              class="repairing-material-label"
-            >
-              Payment Method
-            </label>
-            <select
-              id="repairing-paymentMethod"
-              name="repairing-paymentMethod"
-              class="repairing-material-select"
-              required
-            >
-              <option value="" disabled selected>Select Payment Method</option>
-              <option value="cash">Cash</option>
-              <option value="card">Card</option>
-              <option value="online">Online Payment</option>
-            </select>
-          </div>
-
-          <!-- Submit Button -->
-          <div class="repairing-form-group">
-            <button
-              type="submit"
-              class="repairing-material-btn repairing-submit-btn"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-
-        <!-- Display Phone Number -->
-        <div
-          id="displayPhoneNumber"
-          class="repairing-phone-number"
-        ></div>
-      </div>
+    <button>
+     Generate
+    </button>
+   </div>
+   <div class="card" tabindex="0">
+    <img alt="Purchase invoice icon" height="50" src="https://storage.googleapis.com/a1aa/image/OVlFbEIeAt0Dcq6A989qXYCnN8XG0PfQOVQcUwCBQJ4O3dAUA.jpg" width="50"/>
+    <h3>
+     Purchase Invoice
+    </h3>
+    <p>
+     Easily manage all your purchase invoices.
+    </p>
+    <div class="count">
+     300
+     <span>
+      Total Invoices
+     </span>
     </div>
+    <button>
+     Generate
+    </button>
+   </div>
+  
   </div>
-</div>
-
-,iskoo pura update kardaa
+ </body>
+</html>

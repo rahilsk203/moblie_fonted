@@ -8,6 +8,11 @@ body {
     scroll-behavior: smooth; /* Enables smooth scrolling */
 }
 
+html {
+      scroll-behavior: smooth;
+    }
+
+
 h1 {
     text-align: center;
     color: #333;
@@ -316,6 +321,10 @@ table td[data-label]::before {
 .toggle-icon{
     margin-left: 40px;
 }
+
+
+
+
 #main{
     margin-left: 250px;
     padding: 20px;
@@ -898,7 +907,8 @@ body {
 }
 
 .hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 /* Close Button */
