@@ -885,20 +885,26 @@ function submitRepairingForm(event) {
   // Base API URL with global authKey
   let apiUrl = `http://127.0.0.1:5000/repairingdevice/add?auth_key=${authKeyLogin}`;
 
-  // Dynamically append all parameters, including empty fields (as empty values)
-  apiUrl += `&customer_name=${encodeURIComponent(customerName)}`;
-  apiUrl += `&phone_number=${encodeURIComponent(phoneNumber)}`;
-  apiUrl += `&received_by=${encodeURIComponent(receivedBy)}`;
-  apiUrl += `&company=${encodeURIComponent(company)}`;
-  apiUrl += `&model=${encodeURIComponent(model)}`;
-  apiUrl += `&device_condition=${encodeURIComponent(deviceCondition)}`;
-  apiUrl += `&repairing_cost=${encodeURIComponent(repairingCost)}`;
-  apiUrl += `&estimated_delivery_date=${encodeURIComponent(deliveryDate)}`;
-  apiUrl += `&advance_payment=${encodeURIComponent(advancePayment)}`;
-  apiUrl += `&payment_method=${encodeURIComponent(paymentMethod)}`;
+// Dynamically append all parameters, including empty fields (set to 'N/A' if missing)
+apiUrl += `&customer_name=${encodeURIComponent(customerName || 'N/A')}`;
+apiUrl += `&phone_number=${encodeURIComponent(phoneNumber || 'N/A')}`;
+apiUrl += `&received_by=${encodeURIComponent(receivedBy || 'N/A')}`;
+apiUrl += `&company=${encodeURIComponent(company || 'N/A')}`;
+apiUrl += `&model=${encodeURIComponent(model || 'N/A')}`;
+apiUrl += `&device_condition=${encodeURIComponent(deviceCondition || 'N/A')}`;
+apiUrl += `&repairing_cost=${encodeURIComponent(repairingCost || 0.0)}`;
+apiUrl += `&estimated_delivery_date=${encodeURIComponent(deliveryDate || 'N/A')}`;
+apiUrl += `&advance_payment=${encodeURIComponent(advancePayment || 0.0)}`;
+apiUrl += `&payment_method=${encodeURIComponent(paymentMethod || 'N/A')}`;
 
-  // Adding default values for fields that are not provided (keeping empty as is)
-  apiUrl += `&repairing_status=${encodeURIComponent('')}&bill_status=${encodeURIComponent('')}&due_price=${encodeURIComponent('')}&delivery_status=${encodeURIComponent('')}&technician_name=${encodeURIComponent('')}`;
+// Adding default 'N/A' values for other fields that are not provided
+apiUrl += `&repairing_status=${encodeURIComponent('N/A')}`;
+apiUrl += `&bill_status=${encodeURIComponent('N/A')}`;
+apiUrl += `&due_price=${encodeURIComponent('N/A')}`;
+apiUrl += `&delivery_status=${encodeURIComponent('N/A')}`;
+apiUrl += `&technician_name=${encodeURIComponent('N/A')}`;
+
+
 
   // Send the data using fetch API (GET method)
   fetch(apiUrl, {
